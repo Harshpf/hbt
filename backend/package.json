@@ -1,0 +1,19 @@
+{
+  "name": "hbt",
+  "version": "1.0.0",
+  "description": "this is habit tracker project",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run dev"
+  },
+  "author": "priyanshu and aryan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.15.0"
+  },
+  "devDependencies": {
+    "@ljharb/tsconfig": "^0.3.2",
+    "@tsconfig/node14": "^14.1.3"
+  }
+}
