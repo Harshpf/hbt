@@ -18,7 +18,7 @@ const signup =  async (req, res) => {
 };
 
 const login = async (req, res) => {
-    try {
+    try {   
         const { email, password } = req.body;
         const validuser = await userdata.findOne({ email });
         if (!validuser) {
