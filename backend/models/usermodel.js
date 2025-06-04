@@ -2,7 +2,7 @@ const mongoose=require("mongoose");
 
 // user schema
 const userschema= new mongoose.Schema({
-    name:String,
+    // name:String,
     email:String,
     password:String,
 });

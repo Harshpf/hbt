@@ -2,8 +2,14 @@ const express = require("express");
 const {connectDB} = require("./config");
 const app = express();
 const routes=require("./routes/auth");
+const cors = require('cors');
 
-
+const corsOption = {
+    origin: 'http://localhost:5173',
+    methods: ["GET", "POST", "DELETE","PUT"],
+    credentials: true 
+};
+app.use(cors(corsOption));
 // mongodb
 connectDB();
 

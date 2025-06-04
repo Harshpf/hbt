@@ -4,7 +4,7 @@ const signup =  async (req, res) => {
     try {
         const data = req.body;
         const newuser=new userdata({
-            name:data.name,
+            // name:data.name,
             email:data.email,
             password:data.password
         });
