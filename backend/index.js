@@ -3,6 +3,8 @@ const {connectDB} = require("./config");
 const app = express();
 const routes=require("./routes/auth");
 const cors = require('cors');
+const dotenv = require("dotenv");
+dotenv.config();
 
 const corsOption = {
     origin: 'http://localhost:5173',
