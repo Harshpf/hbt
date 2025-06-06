@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './Login.css'
 import { loginUser } from "./api";
+import myimage from '../assets/hb2.jpg';
 
 
 const Login = () => {
@@ -32,10 +33,10 @@ const[message, setMessage] = useState("");
            <h1>Welcome Back!</h1>
            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia, amet.</p>
 
-            <form action="login-page" onSubmit={handleSubmit}>
-              <input type="email" onChange={handleChange} placeholder='username'/>
-              <input type="password" onChange={handleChange} placeholder='password'/>
-              <label htmlFor="forgetpassword">forgetpassword</label>
+            <form action="login-page" className="login-page"onSubmit={handleSubmit}>
+              <input name="email" onChange={handleChange} placeholder='Email'/>
+              <input  name = "password" type="password" onChange={handleChange} placeholder='password'/>
+              <label htmlFor="forgetpassword">forgetpassword?</label>
 
               <button>Login</button>
                <p>{message}</p>
@@ -43,14 +44,14 @@ const[message, setMessage] = useState("");
         </div>
 
         <div className="right-container">
-             <div className="image-container">
-              <img src="" alt="" />
-             </div>
+             
+            <img src={myimage} alt=""  className='image-container'/>
+             
         </div>
 
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Login
