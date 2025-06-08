@@ -5,6 +5,9 @@ const routes=require("./routes/auth");
 const cors = require('cors');
 const dotenv = require("dotenv");
 dotenv.config();
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
 
 const corsOption = {
     origin: 'http://localhost:5173',
