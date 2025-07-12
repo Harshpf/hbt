@@ -17,7 +17,9 @@ const[message, setMessage] = useState("");
     e.preventDefault();
     try {
       const res = await loginUser(form.email, form.password);
-      localStorage.setItem("token", res.data.token);
+
+      const token = res.data.token;
+      localStorage.setItem("token", token);    //store token for future
       setMessage("Login successful");
     } catch (err) {
       setMessage("Login failed");

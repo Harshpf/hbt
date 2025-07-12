@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from "./Componnent/Login";
 import Signup from "./Componnent/signup";
+import Landing from "./Componnent/Landing"
   import './App.css';
 
 
@@ -27,8 +28,9 @@ const App = () => {
         <Routes>
            <Route path ="/login" element={<Login/>}/>
            <Route path ="/signup" element={<Signup/>}/>
+           <Route path ="/" element={<Landing/>}/>
        </Routes>
-
+          
        
       </div>
      

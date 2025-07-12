@@ -1,0 +1,168 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+
+.body{
+    /* background-color: blueviolet; */
+    height: 3000px;
+    
+}
+
+.container{
+    display: flex;
+    /* justify-content: space-between; */
+    background-color: #eeeeee;
+    height: 100vh;
+}
+
+.navbar{
+    margin: 0.5rem;
+  width: 20%;
+  height: 630px;
+  background-color:white;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding: 2rem;
+position: fixed;
+font-size: large;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  
+  
+}
+
+a{
+    text-decoration: none;
+    
+    
+
+}
+
+ul{
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+}
+
+.btn{
+    /* background-color: blue; */
+    margin: 2rem;
+    width: 5rem;
+    position: fixed;
+    margin-left: 70rem;
+    
+    
+}
+
+
+
+#login-btn{
+    width: 4rem;
+    height: 1.5rem;
+    /* background-color: beige; */
+    color: black;
+      /* color: white; */
+  border: none;
+  /* border: 2px solid black; */
+  box-shadow: 2px 1px 2px 2px rgb(129, 128, 128);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+
+}
+
+#login-btn:hover{
+    background-color: white;
+    /* color: black; */
+    /* transform: scaleX(1.1); */
+    /* transition-duration: 1s; */
+      /* background-color: #45a049; */
+  transform: scale(1.05);
+}
+
+
+.card{
+    width: 40%;
+    height: 400px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    margin-left: 20rem;
+    flex-direction: column;
+    border-radius: 10px;
+    margin-top: 8rem;
+    box-shadow: 2px 2px 2px 2px rgb(201, 197, 197);
+}
+
+
+
+.showhabit{
+    /* width: 100vw; */
+    margin-top: 2rem;
+    height: 100vh;
+    background-color: #eeeeee ;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.habit-card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin: 15px;
+  max-width: 400px;
+  height: 400px;
+   display: flex;
+    justify-content: center;
+    margin-top: 8rem;
+    float: inline-start;
+}
+
+.habit-info{
+    width: 200px;
+    height: 200px;
+}
+
+/* label{
+    display: block;
+} */
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  font-family: Arial, sans-serif;
+}
+
+.add-new-habit {
+  text-align: center;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  padding: 40px;
+  width: 300px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+
+.plus {
+  font-size: 40px;
+  color: #357edd;
+}
+
+
+.about{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    background-color: #eeeeee;
+    height: 100vh;
+}

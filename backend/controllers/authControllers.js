@@ -7,13 +7,13 @@ const signup =  async (req, res) => {
         const { name, email, password } = req.body; // data from user
 
         // Field check
-        if (!name || !email || !password) {
-            return res.status(400).json({ msg: "All fields are required" });
-        }
+        // if (!name || !email || !password) {
+        //     return res.status(400).json({ msg: "All fields are required" });
+        // }
 
         const isUser = await userdata.findOne({ email });  //validation to avoid multiple registration 
         if (isUser) {
-            return res.status(400).json({ msg: "user already register" });
+            return res.status(400).json( {msg:"user already register"} );
         }
 
         //hashing password
@@ -38,7 +38,7 @@ const signup =  async (req, res) => {
 const login = async(req, res) => {
     try {   
     
-        const { email, password } = req.user;
+        const { email, password } = req.body;
 
         if (!email || !password) {
             return res.status(400).json({ msg: "All fields are required" });
