@@ -2,7 +2,7 @@ const userdata = require("../models/usermodel");
 const jwt = require("jsonwebtoken");
 
 
-exports.authMiddlware = async (req, res, next) => {
+exports.authMiddleware = async (req, res, next) => {
         
     try {  
         const token = req.cookies.token;
@@ -17,9 +17,9 @@ exports.authMiddlware = async (req, res, next) => {
         if (!matchtoken) {
             return res.status(400).json({ msg: "User is not valid" });
         }
-
+        console.log(matchtoken)
         // finding user
-        const validuser = await userdata.findOne({email:matchtoken.email});
+        const validuser = await userdata.findOne({_id:matchtoken._id});
         if (!validuser) {
             return res.status(404).json({ msg: "User not found" });
         }
