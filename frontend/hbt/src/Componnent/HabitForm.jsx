@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import './HabitForm.css';
+import { addNewHabit } from "./allApi";
+import {useNavigate} from 'react-router-dom';
+
 
 const HabitForm = ({ onSave }) => {
+  const[message, setMessage] = useState("");
+    const navigate = useNavigate();
+  
+  
   const [formData, setFormData] = useState({
     habitName: '',
     category: 'Health',
@@ -33,10 +40,72 @@ const HabitForm = ({ onSave }) => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSave(formData);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   onSave(formData);
+  // };
+
+  
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await addNewHabit({
+      name: formData.habitName,
+      category: formData.category,
+      description: formData.description,
+      days: formData.days,
+      duration: formData.duration,
+      enableReminder: formData.enableReminder,
+      reminderTime: formData.reminderTime,
+      priority: formData.priority,
+      goal: formData.goal,
+      notes: formData.note,
+      time: formData.time,
+    });
+
+    setMessage(res.data.msg || "habit created");
+
+    // 🔥 call onSave with the new habit
+    if (onSave) {
+      onSave(res.data.newHabit || {
+        name: formData.habitName,
+        category: formData.category,
+        description: formData.description,
+        days: formData.days,
+        duration: formData.duration,
+        enableReminder: formData.enableReminder,
+        reminderTime: formData.reminderTime,
+        priority: formData.priority,
+        goal: formData.goal,
+        notes: formData.note,
+        time: formData.time,
+        streak: 0, // default streak
+      });
+    }
+
+    // reset form
+    setFormData({
+      habitName: '',
+      category: 'Health',
+      description: '',
+      days: [],
+      time: '08:00',
+      duration: 30,
+      priority: 'Medium',
+      enableReminder: false,
+      reminderTime: '',
+      goal: '',
+      note: ''
+    });
+  } catch (err) {
+    setMessage(err.response?.data?.msg || "failed to create");
+
+    if (err.response?.status === 401) {
+      navigate('/login');
+    }
+  }
+};
+
 
   return (
     <form className="habit-form" onSubmit={handleSubmit}>
@@ -144,3 +213,6 @@ const HabitForm = ({ onSave }) => {
 };
 
 export default HabitForm;
+
+
+

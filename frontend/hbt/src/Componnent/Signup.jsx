@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { signupUser } from "./api";
+import { signupUser } from "./allApi";
 import './Signup.css';
 import myimg from '../assets/hb pic.jpg';
 import {useNavigate} from 'react-router-dom';

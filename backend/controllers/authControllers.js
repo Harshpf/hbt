@@ -60,10 +60,17 @@ const login = async(req, res) => {
         const token = jwt.sign(                                             
             { _id: validuser._id },//payload                                         
             process.env.SECRET_KEY
+              
         )
 
         //sending token using cookies
-        res.cookie('token',token);
+        res.cookie('token', token, {
+  httpOnly: true,
+  secure: false, // true in production (HTTPS)
+  sameSite: 'Lax',
+  maxAge: 1000 * 60 * 60 // 1 hour
+});
+
 
         res.status(200).json("login successful");
     } catch (err) {

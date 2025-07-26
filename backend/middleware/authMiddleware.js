@@ -31,3 +31,6 @@ exports.authMiddleware = async (req, res, next) => {
         res.status(401).json({ msg: "Authentication failed", error: err.message });
     }
 };
+
+
+

@@ -1,11 +1,37 @@
+
+
+
+// // HabitCard.jsx
 import React from 'react';
 import './HabitCard.css';
 
+// import React, { useEffect } from 'react';
+// import axios from 'axios';
+
+
 const HabitCard = ({ habit }) => {
+  if (!habit) return null;
+
+  //  useEffect(() => {
+  //   const fetchHabits = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:4000/api/getAllHabits', {withCredentials: true});
+  //       console.log(response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching habits:', error);
+  //     }
+  //   };
+
+  //   fetchHabits();
+  // }, []);
+
+
+
+
   return (
     <div className="habit-card">
       <div className="habit-card-header">
-        <h3>{habit.habitName}</h3>
+        <h3>{habit.name}</h3>
         <span className="category">{habit.category}</span>
       </div>
 
@@ -21,12 +47,10 @@ const HabitCard = ({ habit }) => {
       <div className="schedule">
         <strong>Schedule</strong>
         <div className="days">
-          {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, i) => (
+          {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
             <div
-              key={i}
-              className={`day ${
-                habit.days.includes(day) ? 'active' : ''
-              }`}
+              key={day}
+              className={`day ${habit.days?.includes(day) ? 'active' : ''}`}
             >
               {day[0]}
             </div>
@@ -48,10 +72,46 @@ const HabitCard = ({ habit }) => {
       </div>
 
       <div className="note">
-        <strong>Today's Note:</strong> {habit.note || 'No note yet'}
+        <strong>Today's Note:</strong> {habit.notes || 'No note yet'}
       </div>
+
+      <button>delete</button>
     </div>
   );
 };
 
 export default HabitCard;
+
+
+// import React, { useEffect } from 'react';
+// import axios from 'axios';
+
+// const HabitCard = () => {
+//   useEffect(() => {
+//     const fetchHabits = async () => {
+//       try {
+//         const response = await axios.get('http://localhost:4000/api/getAllHabits', {withCredentials: true});
+//         console.log(response.data);
+//       } catch (error) {
+//         console.error('Error fetching habits:', error);
+//       }
+//     };
+
+//     fetchHabits();
+//   }, []);
+
+//   return (
+//     <div>
+//       {/* Habit cards will be rendered here */}
+//     </div>
+//   );
+// };
+
+// export default HabitCard;
+
+
+
+
+
+
+

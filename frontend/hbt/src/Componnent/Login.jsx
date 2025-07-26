@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import './Login.css'
-import { loginUser } from "./api";
+import { loginUser } from "./allApi";
 import myimage from '../assets/hb2.jpg';
+import {useNavigate} from 'react-router-dom';
+
+
 
 
 const Login = () => {
 
 const [form, setForm] = useState({email:"",password:""});
 const[message, setMessage] = useState("");
-// const navigate = useNavigate();
+const navigate = useNavigate();
 
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -18,9 +21,10 @@ const[message, setMessage] = useState("");
     try {
       const res = await loginUser(form.email, form.password);
 
-      const token = res.data.token;
-      localStorage.setItem("token", token);    //store token for future
+      // const token = res.data.token;
+      // localStorage.setItem("token", token);    //store token for future
       setMessage("Login successful");
+      navigate("/");
     } catch (err) {
       setMessage("Login failed");
     }

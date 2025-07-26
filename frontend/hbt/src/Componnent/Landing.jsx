@@ -2,7 +2,16 @@
 import React, { useState } from 'react';
 import HabitForm from './HabitForm';
 import HabitCard from './HabitCard';
+import StreakSummary from './StreakSummary';
+import ChatPanel from './ChatPanel';
+import CompletionChart from './CompletionChart';
+import CalendarStreak from './CalendarStreak';
 import { useNavigate} from 'react-router-dom';
+import { useEffect } from 'react';
+
+import { getAllHabits} from "./allApi";
+
+
 
 
 
@@ -20,6 +29,20 @@ const Landing = () => {
   const handleOpenForm = () => {
     setShowForm(true); // show the form when + is clicked
   };
+
+   useEffect(() => {
+      const fetchHabits = async () => {
+        try {
+          const response = await getAllHabits( {withCredentials: true});
+           setHabits(response.data);
+          console.log(response.data);
+        } catch (error) {
+          console.error('Error fetching habits:', error);
+        }
+      };
+  
+      fetchHabits();
+    }, []);
 
       const handleSaveHabit = (newHabit) => {
     setHabits([...habits, newHabit]); // add new habit to the list
@@ -55,7 +78,7 @@ const Landing = () => {
                  <li><a href="#Habit">Habit Page</a></li>
                  <li><a href="#show-habit">Show Habit Page</a></li>
                  <li><a href="#About">About</a></li>
-                 <li><a href="Dashboard">Dashboard</a></li>
+                 <li><a href="#Dashboard">Dashboard</a></li>
                 </ul>
             </div>
            
@@ -109,7 +132,7 @@ const Landing = () => {
              {habits.length > 0 && (
         <div className="habit-cards">
           {habits.slice(-2).map((habit, index) => (
-            <HabitCard key={index} habit={habit} />
+            <HabitCard key={habit._id} habit={habit} />
           ))}
         </div>
              )}
@@ -125,8 +148,39 @@ const Landing = () => {
 
         <section id='About'>
          <div className="about">
-          <h2>about</h2>
+          <h2>About</h2>
+          <div className="para-container">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, ut. Facere unde laudantium reiciendis pariatur iste suscipit, voluptatibus ipsum enim debitis recusandae maxime, labore molestiae amet iusto deserunt doloremque at tempora accusamus ad exercitationem delectus deleniti harum dolorum. Suscipit repellendus esse nesciunt minima distinctio voluptates architecto ex ut fugit voluptatum laborum omnis, dolore nam ducimus itaque deserunt, est hic non perspiciatis aperiam eligendi accusantium molestias quod ad? Ipsa minima hic, beatae pariatur rem esse? Mollitia dolores nulla fuga enim quidem repellat quos porro molestiae quas sint ipsum deserunt officiis reiciendis, sequi eius provident qui excepturi maxime debitis quia, quo et iusto numquam? Iusto pariatur quas, et consequuntur error in tempore eveniet dolores at? Omnis esse facilis dicta rerum voluptatibus optio, voluptate officiis dolor, consequatur exercitationem, vitae porro pariatur distinctio aspernatur nam ut animi tenetur libero harum odio nulla accusamus? Hic, aut fuga. Beatae rem odio eos enim quia, autem, totam, deserunt tenetur dolor eaque ad tempore. Dolorem vero nihil, beatae similique omnis dicta voluptatibus hic, aperiam, quidem saepe reiciendis sunt libero nam aliquid delectus numquam est natus assumenda molestias ipsa illum modi. Vitae placeat, quia culpa laborum, amet temporibus quas quis enim asperiores consequatur dolorem distinctio neque reiciendis officia. Eveniet?
+              
+            </p>
+          </div>
          </div>
+        </section>
+
+
+
+        <section id='Dashboard'>
+          <h2>Dashboard</h2>
+              <div className="app">
+      <aside className="sidebar">
+        <StreakSummary completed={64} missed={36} />
+        
+        <div className="calender">
+          <CalendarStreak />
+         </div>
+      </aside>
+            
+
+           
+              
+
+      <main className="main">
+        <CompletionChart />
+      </main>
+      {/* <aside className="chat">
+        <ChatPanel />
+      </aside> */}
+    </div>
         </section>
 
         

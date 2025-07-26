@@ -21,7 +21,7 @@ try{
     });
 
    await newHabit.save();
-   res.status(200).json({msg:"New habbit created"})
+   res.status(200).json({msg:"New habbit created",newHabit})
 
 }catch(error){
     res.status(500).json({msg:"error from adding haibt ,server error",message:error.message});
