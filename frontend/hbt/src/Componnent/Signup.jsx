@@ -88,7 +88,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="main">
+    <div className="main-header">
 
        
 

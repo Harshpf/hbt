@@ -10,6 +10,13 @@ import { useNavigate} from 'react-router-dom';
 import { useEffect } from 'react';
 
 import { getAllHabits} from "./allApi";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Mousewheel } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+
 
 
 
@@ -47,6 +54,16 @@ const Landing = () => {
       const handleSaveHabit = (newHabit) => {
     setHabits([...habits, newHabit]); // add new habit to the list
     setShowForm(false);               // hide form after saving
+  };
+
+
+    const handleDelete = (id) => {
+    setHabits((prev) => prev.filter((h) => h._id !== id));
+  };
+
+  const handleUpdate = (habit) => {
+    console.log('Update habit:', habit);
+    // Redirect to edit form or show modal
   };
 
 
@@ -123,25 +140,34 @@ const Landing = () => {
          
         </section>
 
-          {/* Show Habit Cards */}
-      
-        <section id='show-habit'>
-          <div className="showhabit">
-      
-
-             {habits.length > 0 && (
-        <div className="habit-cards">
-          {habits.slice(-2).map((habit, index) => (
-            <HabitCard key={habit._id} habit={habit} />
-          ))}
-        </div>
-             )}
-
-          </div>
-
-
           
-        </section>
+          <section id="show-habit">
+  <div className="showhabit">
+    <h2 className='show-header'>Your Habits</h2>
+       
+<Swiper
+  modules={[Navigation, Pagination]}
+  spaceBetween={10}
+  slidesPerView={1}
+  navigation
+  pagination={{ clickable: true }}
+  mousewheel={true}
+  breakpoints={{
+    300: { slidesPerView: 1 },
+    600: { slidesPerView: 2 },
+    1024: { slidesPerView: 3 },
+  }}
+>
+  {habits.map((habit) => (
+    <SwiperSlide key={habit._id}>
+      <HabitCard habit={habit} onDelete={handleDelete} onUpdate={handleUpdate} />
+    </SwiperSlide>
+  ))}
+</Swiper>
+
+  </div>
+</section>
+
 
 
 

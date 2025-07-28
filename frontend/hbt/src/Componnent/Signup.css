@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-.main{
+.main-header{
     width: 80%;
     height: 80vh;
     margin-top: 4rem;
@@ -84,3 +84,4 @@ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     /* margin-left: 5rem; */
 
 }
+

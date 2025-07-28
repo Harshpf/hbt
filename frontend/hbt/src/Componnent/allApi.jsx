@@ -16,3 +16,14 @@ export const addNewHabit = (habitCard) =>
 
 export const getAllHabits = () =>
   API.get("/getAllHabits");
+
+
+export const Delete = (habit) =>
+  API.delete("/delete",habit._id);
+
+export const  Complete = (habit) =>
+  API.post("/complete",habit._id,day,today);
+
+export const getCalender = (habit) =>
+  API.get("/getCalender",habit._id);
+

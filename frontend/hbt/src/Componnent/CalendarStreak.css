@@ -1,3 +1,10 @@
 /* CalendarStreak.css */
 .calendar-streak { padding: 1rem; }
 .streak-day { background: #d1c4e9 !important; }
+
+
+.streak-day {
+  background: yellow !important;
+  color: black !important;
+  border-radius: 50%;
+}

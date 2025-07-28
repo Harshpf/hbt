@@ -30,6 +30,11 @@ const navigate = useNavigate();
     }
   };
 
+
+  const handleclick = () =>{
+    navigate('/signup')
+  }
+
   
   return (
     <div>
@@ -42,11 +47,13 @@ const navigate = useNavigate();
             <form action="login-page" className="login-page"onSubmit={handleSubmit}>
               <input name="email" onChange={handleChange} placeholder='Email'/>
               <input  name = "password" type="password" onChange={handleChange} placeholder='password'/>
-              <label htmlFor="forgetpassword">forgetpassword?</label>
+              {/* <label htmlFor="forgetpassword">forgetpassword?</label> */}
+              <a href=""className='btn-signup' onClick={handleclick}>Signup</a>
 
               <button>Login</button>
                <p>{message}</p>
             </form>
+
         </div>
 
         <div className="right-container">
