@@ -34,6 +34,7 @@ const habitCardSchema = new mongoose.Schema({
     notes: {
         type: String,
     }
+
 });
 
 const habitCard = mongoose.model("habitCard",habitCardSchema);

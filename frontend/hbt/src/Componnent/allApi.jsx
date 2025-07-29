@@ -18,11 +18,12 @@ export const getAllHabits = () =>
   API.get("/getAllHabits");
 
 
-export const Delete = (habit) =>
-  API.delete("/delete",habit._id);
+export const Delete = (habitId) =>
+  // console.log(habitId)
+  API.delete(`/delete/${habitId}`);
 
-export const  Complete = (habit) =>
-  API.post("/complete",habit._id,day,today);
+export const Complete = (habitId, day, today) =>
+  API.post(`/complete/${habitId}`, { day, today });
 
 export const getCalender = (habit) =>
   API.get("/getCalender",habit._id);

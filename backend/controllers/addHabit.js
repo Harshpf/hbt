@@ -1,10 +1,12 @@
-const  habitCard  = require("../models/habitCard");
+const   habitCard = require("../models/habitCard");
+const  streak  = require("../models/completeDates");
+
 
 exports.addNewHabit = async (req,res) => {
 
 try{
     const userId = req.user._id;
-    console.log(userId)
+    // console.log(userId)
     const data = req.body;
     const newHabit = new habitCard({
         userId:userId,
@@ -33,10 +35,31 @@ try{
 exports.getAllHabit = async (req,res) =>{
     try{
         const data  = req.user;
-        console.log(data)
+        // console.log(data)
         const allHabits = await habitCard.find({userId:data._id});
         res.status(200).json(allHabits);
     }catch(error){
         res.status(500).json({msg:"error from getting habit",message:error.message})
+    }
+}
+
+exports.deleteHabit = async(req,res) =>{
+    try{
+        const data= req.params;
+        console.log(data.id);
+        const deletedHabit = await habitCard.findByIdAndDelete(data.id);
+        res.status(200).json({"msg":"habit deleted succefull"});
+    }catch(err){
+        res.status(500).json({msg:"error in deleting habit",message:err.message});
+    }
+}
+
+exports.completeHabit = (req,res) =>{
+    try{
+        const data = req.body;
+        console.log(data);
+        res.status(200).json("doen work")
+    }catch(err){
+        res.status(500).json({msg:"error from server",message:err.message})
     }
 }

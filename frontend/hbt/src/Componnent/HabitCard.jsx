@@ -118,16 +118,17 @@ const HabitCard = ({ habit, onDelete, onUpdate }) => {
 
   if (!habit) return null;
 
-  const handleDelete = async () => {
+   const handleDelete = async () => {
     try {
-      await Delete ({
+      console.log('Deleting habit with id:', habit._id); // print the habit._id
+      await Delete(habit._id, {
         withCredentials: true,
       });
-      onDelete(habit._id); // notify parent to remove habit from UI
+      onDelete(habit._id);
     } catch (error) {
       console.error('Delete error:', error);
     }
-  };
+    };
 
   const handleUpdate = () => {
     onUpdate(habit); // open modal or route for editing
@@ -137,12 +138,15 @@ const HabitCard = ({ habit, onDelete, onUpdate }) => {
     try{
     setIsCompleted(true); // local UI update
     // Optionally send completion to backend
+    console.log(habit.days)
     const today = new Date().toISOString().split('T')[0]; // "2025-07-28"
-await Complete(habit._id, day, today);
+await Complete(habit._id, habit.days, today,{
+  withCredentials:true
+});
     
     }
     catch (error){
-      console.error("mark not complete");
+      console.error({msg:"mark not complete",message:error.message});
     }
   };
 
@@ -168,7 +172,7 @@ await Complete(habit._id, day, today);
           {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
             <div
               key={day}
-              className={`day ${habit.days?.includes(day) ? 'active' : ''}`}
+              className={`day ${habit.days?.includes(habit.days) ? 'active' : ''}`}
             >
               {day[0]}
             </div>

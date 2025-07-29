@@ -17,7 +17,7 @@ exports.authMiddleware = async (req, res, next) => {
         if (!matchtoken) {
             return res.status(400).json({ msg: "User is not valid" });
         }
-        console.log(matchtoken)
+        // console.log(matchtoken)
         // finding user
         const validuser = await userdata.findOne({_id:matchtoken._id});
         if (!validuser) {
