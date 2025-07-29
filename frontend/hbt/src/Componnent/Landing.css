@@ -112,7 +112,7 @@ ul{
     margin-top: 4rem;
     height: 100vh;
     background-color: #eeeeee ;
-    display: flex;
+    /* display: flex; */
     /* justify-content: center; */
     padding: 2rem;
     /* gap: 1rem; */
@@ -121,16 +121,10 @@ ul{
 
 .show-header{
 
-  width: 600px;
+  width: 200px;
   margin: 0 auto;
   font-size: 2rem;
-  margin-bottom: 1rem;
   
-
-
- 
-  /* margin-right: 4rem; */
-  /* background-color: aqua; */
   
 }
 
@@ -146,7 +140,7 @@ ul{
   height: 400px;
    display: flex;
     justify-content: center;
-    margin-top: 8rem;
+    margin-top: 5rem;
     float: inline-start;
     
 }
