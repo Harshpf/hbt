@@ -29,6 +29,7 @@ import './CalendarStreak.css';
 import axios from 'axios';
 import {getCalender} from './allApi';
 
+
 export default function CalendarStreak({ habitId }) {
   const [date, setDate] = useState(new Date());
   const [completedDates, setCompletedDates] = useState([]);
@@ -36,9 +37,12 @@ export default function CalendarStreak({ habitId }) {
   useEffect(() => {
     const fetchCompleted = async () => {
       try {
+        console.log(habitId)
         const res = await getCalender(
+          habit._id,
           { withCredentials: true }
         );
+        console.log(res.data);
         setCompletedDates(res.data); // array of "YYYY-MM-DD"
       } catch (err) {
         console.error('Failed to fetch completed dates:', err);

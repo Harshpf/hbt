@@ -45,6 +45,7 @@ exports.getAllHabit = async (req,res) =>{
 
 exports.deleteHabit = async(req,res) =>{
     try{
+
         const data= req.params;
         console.log(data.id);
         const deletedHabit = await habitCard.findByIdAndDelete(data.id);
@@ -54,12 +55,49 @@ exports.deleteHabit = async(req,res) =>{
     }
 }
 
-exports.completeHabit = (req,res) =>{
+exports.completeHabit = async(req,res) =>{
     try{
+        const userId = req.user._id;
+        const cardId = req.params.id;
         const data = req.body;
-        console.log(data);
-        res.status(200).json("doen work")
+        const day = Array.isArray(data.day) ? data.day : [data.day];
+        const today = data.today;
+
+
+        const exist = await streak.findOne({cardId});
+        if(!exist){
+            const newcomplete = new streak({
+            userId: userId,
+            cardId: cardId,
+            completed: [today],
+            day
+            });
+            await newcomplete.save();
+        }
+        else {
+            await streak.updateOne(
+            { cardId },
+            {
+                $push: { completed:today } 
+            }
+            );
+        }
+
+        res.status(200).json("done work")
     }catch(err){
         res.status(500).json({msg:"error from server",message:err.message})
+    }
+}
+
+
+
+exports.habitData = async(req,res)=>{
+    try{
+        const cardId = req.params;
+        console.log(cardId)
+        const data = await streak.findOne({cardId});
+        res.statu(200).json(data);
+    }catch(err){
+        res.status(500).json({msg:"error from fetching habitData",message:err.message});
     }
 }

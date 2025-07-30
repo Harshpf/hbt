@@ -7,7 +7,7 @@ const dateschema = new mongoose.Schema({
     cardId:{
         type:mongoose.Schema.Types.ObjectId,
     },
-    compeleted:[{
+    completed:[{
         type:String,
     }],
     day:[{

@@ -26,5 +26,5 @@ export const Complete = (habitId, day, today) =>
   API.post(`/complete/${habitId}`, { day, today });
 
 export const getCalender = (habit) =>
-  API.get("/getCalender",habit._id);
+  API.get(`/habitData/${habit}`);
 
