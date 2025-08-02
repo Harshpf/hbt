@@ -172,7 +172,7 @@ await Complete(habit._id, habit.days, today,{
           {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
             <div
               key={day}
-              className={`day ${habit.days?.includes(habit.days) ? 'active' : ''}`}
+              className={`day ${habit.days?.includes(day) ? 'active' : ''}`}
             >
               {day[0]}
             </div>

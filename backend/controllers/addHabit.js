@@ -93,10 +93,10 @@ exports.completeHabit = async(req,res) =>{
 
 exports.habitData = async(req,res)=>{
     try{
-        const cardId = req.params;
+        const cardId = req.params.id;
         console.log(cardId)
         const data = await streak.findOne({cardId});
-        res.statu(200).json(data);
+        res.status(200).json(data);
     }catch(err){
         res.status(500).json({msg:"error from fetching habitData",message:err.message});
     }

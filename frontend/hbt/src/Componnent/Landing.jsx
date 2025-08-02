@@ -43,7 +43,7 @@ const Landing = () => {
         try {
           const response = await getAllHabits( {withCredentials: true});
            setHabits(response.data);
-          console.log(response.data);
+          // console.log(response.data);
         } catch (error) {
           console.error('Error fetching habits:', error);
         }
@@ -59,7 +59,7 @@ const Landing = () => {
 
 
     const handleDelete = (id) => {
-    setHabits((prev) => prev.filter((h) => h._id !== id));
+    setHabits((prev) => prev.filter((habit) => habit._id !== id));
   };
 
   const handleUpdate = (habit) => {
@@ -74,6 +74,10 @@ const Landing = () => {
   const handleLoginClick = () => {
     navigate('/login');
   };
+
+  const handleClick = () =>{
+    
+  }
   
   
 
@@ -161,7 +165,7 @@ const Landing = () => {
 >
   {habits.map((habit) => (
     <SwiperSlide key={habit._id}>
-      <HabitCard habit={habit} onDelete={handleDelete} onUpdate={handleUpdate} />
+      <HabitCard habit={habit} onDelete={handleDelete} onUpdate={handleUpdate} onClick={handleClick} />
     </SwiperSlide>
   ))}
 </Swiper>
@@ -192,9 +196,14 @@ const Landing = () => {
       <aside className="sidebar">
         <StreakSummary completed={64} missed={36} />
         
-        <div className="calender">
-          <CalendarStreak />
-         </div>
+        <div className="calendar">
+  {habits.map((habit) => (
+    <div key={habit._id}>
+      <h4>{habit.name}</h4>
+      <CalendarStreak habitId={habit._id} />
+    </div>
+  ))}
+</div>
       </aside>
             
 

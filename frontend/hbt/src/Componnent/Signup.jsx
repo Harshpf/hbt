@@ -61,6 +61,7 @@ const Signup = () => {
 
     try {
       const res = await signupUser( form.name, form.email, form.password);
+      // console.log (res.data.msg);
       setMsg(res.data.msg || "Signup successful");
       navigate('/login');
 
@@ -69,7 +70,7 @@ const Signup = () => {
     } catch (err) {
       
        const msg = err?.response?.data?.msg;
-        console.log(msg);
+        // console.log(msg);
       if (msg === "user already register" ) {
           setMsg(msg);
              navigate('/login');}
