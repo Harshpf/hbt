@@ -18,12 +18,15 @@ export const Delete = (habitId) =>
   // console.log(habitId)
   API.delete(`/delete/${habitId}`);
 
+
+
+
 export const Complete = (habitId, day, today) =>
   API.post(`/complete/${habitId}`, { day, today });
 
 
-export const Uncomplete = async (habitId, date, config) => {
-  API.post(`/deletestreak/${habitId}`, { date }, config);
+export const Uncomplete = async (habitId, today, config) => {
+  return API.post(`/deletestreak/${habitId}`, { today},config);
 };
 
 export const getCalender = (habitId) =>

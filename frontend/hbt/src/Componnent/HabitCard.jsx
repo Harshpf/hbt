@@ -33,6 +33,8 @@ const HabitCard = ({ habit, onDelete, onUpdate, onClick }) => {
     onUpdate(habit);
   };
 
+
+
   // ✅ Toggle Complete / Incomplete (without deleting the habit)
   const handleComplete = async (e) => {
     const checked = e.target.checked;

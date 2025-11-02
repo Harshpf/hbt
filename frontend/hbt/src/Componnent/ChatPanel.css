@@ -1,7 +1,7 @@
 /* ChatPanel.css */
-.chat-panel { padding: 1rem; display: flex; flex-direction: column; height: 100%; }
+/* .chat-panel { padding: 1rem; display: flex; flex-direction: column; height: 100%; }
 .messages { flex: 1; overflow-y: auto; margin-bottom: .5rem; }
 .message { padding: .5rem; border-radius: 8px; margin: .25rem 0; max-width: 80%; }
 .message.ai { background: #f3e5f5; align-self: flex-start; }
 .message.user { background: #e8f5e9; align-self: flex-end; }
-.chat-input { padding: .5rem; border: 1px solid #ccc; border-radius: 4px; }
+.chat-input { padding: .5rem; border: 1px solid #ccc; border-radius: 4px; } */

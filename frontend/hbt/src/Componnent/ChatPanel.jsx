@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import './ChatPanel.css';
+// import React, { useState } from 'react';
+// import './ChatPanel.css';
 
-export default function ChatPanel() {
-  const [messages, setMessages] = useState([
-    { from: 'ai', text: 'outgoing voice call to your mom reminding you to drink water?' },
-    { from: 'user', text: 'Yes, let’s.' },
-    { from: 'ai', text: 'Working on your notification setting! Done! Stay hydrated.' },
-  ]);
+// export default function ChatPanel() {
+//   const [messages, setMessages] = useState([
+//     { from: 'ai', text: 'outgoing voice call to your mom reminding you to drink water?' },
+//     { from: 'user', text: 'Yes, let’s.' },
+//     { from: 'ai', text: 'Working on your notification setting! Done! Stay hydrated.' },
+//   ]);
 
 //   return (
 //     <div className="chat-panel">
@@ -21,4 +21,4 @@ export default function ChatPanel() {
 //       <input type="text" placeholder="Message Tempo" className="chat-input" />
 //     </div>
 //   );
-}
+// }

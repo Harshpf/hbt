@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 import HabitForm from './HabitForm';
 import HabitCard from './HabitCard';
-import StreakSummary from './StreakSummary';
-import ChatPanel from './ChatPanel';
-import CompletionChart from './CompletionChart';
+// import StreakSummary from './StreakSummary';
+// import ChatPanel from './ChatPanel';
+// import CompletionChart from './CompletionChart';
 import CalendarStreak from './CalendarStreak';
 import { useNavigate} from 'react-router-dom';
 import { useEffect } from 'react';
@@ -194,7 +194,7 @@ const Landing = () => {
           <h2>Dashboard</h2>
               <div className="app">
       <aside className="sidebar">
-        <StreakSummary completed={64} missed={36} />
+        {/* <StreakSummary completed={64} missed={36} /> */}
         
         <div className="calendar">
   {/* {habits.map((habit) => (
