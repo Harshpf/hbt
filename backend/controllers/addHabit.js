@@ -6,7 +6,6 @@ exports.addNewHabit = async (req,res) => {
 
 try{
     const userId = req.user._id;
-    // console.log(userId)
     const data = req.body;
     const newHabit = new habitCard({
         userId:userId,
@@ -31,6 +30,34 @@ try{
 
 }
 
+exports.updateHabitData = async (req, res) => {
+    try {
+        const cardId = req.params.id;
+        const data = req.body || {};
+
+        const update = {};
+        if (typeof data.name !== 'undefined') update.name = data.name;
+        if (typeof data.category !== 'undefined') update.category = data.category;
+        if (typeof data.description !== 'undefined') update.description = data.description;
+        if (typeof data.days !== 'undefined') update.days = Array.isArray(data.days) ? data.days : [];
+        if (typeof data.duration !== 'undefined') update.duration = data.duration;
+        if (typeof data.enableReminder !== 'undefined') update.enableReminder = data.enableReminder;
+        if (typeof data.reminderTime !== 'undefined') update.reminderTime = data.reminderTime;
+        if (typeof data.priority !== 'undefined') update.priority = data.priority;
+        if (typeof data.goal !== 'undefined') update.goal = data.goal;
+        if (typeof data.notes !== 'undefined') update.notes = data.notes;
+
+        const updatedHabit = await habitCard.findByIdAndUpdate(cardId, update, { new: true });
+
+        if (!updatedHabit) {
+            return res.status(404).json({ msg: 'Habit not found' });
+        }
+
+        res.status(200).json({ msg: 'Habit updated', updatedHabit });
+    } catch (error) {
+        res.status(500).json({ msg: 'Error updating habit', message: error.message });
+    }
+}
 
 exports.getAllHabit = async (req,res) =>{
     try{
@@ -89,6 +116,30 @@ exports.completeHabit = async(req,res) =>{
     }
 }
 
+exports.removeStreakDate = async (req, res) => {
+  try {
+    const cardId = req.params.id;
+    const habitStreak = await streak.findOne({ cardId });
+
+    if (!habitStreak) {
+      return res.status(404).json({ msg: "No streak found for this cardId" });
+    }
+
+    const targetDate = req.body.today; 
+    const dateArray = habitStreak.completed;
+
+    const index = dateArray.indexOf(targetDate);
+    if (index !== -1) {
+      dateArray.splice(index, 1);
+      await habitStreak.save(); 
+      return res.status(200).json({ msg: "Date removed successfully" });
+    } else {
+      return res.status(404).json({ msg: "Date not found in streak" });
+    }
+  } catch (error) {
+    res.status(500).json({ msg: "Error from removeStreakDate", message: error.message });
+  }
+};
 
 
 exports.habitData = async(req,res)=>{
