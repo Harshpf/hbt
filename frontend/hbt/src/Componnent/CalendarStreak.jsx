@@ -15,9 +15,7 @@ export default function CalendarStreak({ habitId }) {
     const fetchCompleted = async () => {
       try {
         const res = await getCalender(habitId);
-        // console.log("Completed Dates from backend:", res.data);
-
-        // Assuming res.data is the whole object with a 'completed' array
+       
         if (res.data && Array.isArray(res.data.completed)) {
           setCompletedDates(res.data.completed);
         } else {
