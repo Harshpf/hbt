@@ -1,15 +1,11 @@
-// import API from './axioxInstance';
 
-// export const addNewHabit = (habitCard) => API.post('/addNewHabit', habitCard);
-
-// export const getAllHabits = () => API.get('/getAllHabits');
-import API from "./api"; // ✅ import the instance with cookies enabled
+import API from "./api"; 
 
 export const signupUser = (name, email, password) =>
   API.post("/signup", { name, email, password });
 
 export const loginUser = (email, password) =>
-  API.post("/login", { email, password }); // cookies sent automatically
+  API.post("/login", { email, password }); 
 
 export const addNewHabit = (habitCard) =>
   API.post("/addNewHabit", habitCard);
@@ -27,7 +23,7 @@ export const Complete = (habitId, day, today) =>
 
 
 export const Uncomplete = async (habitId, date, config) => {
-  return axios.put(`/api/habits/${habitId}/uncomplete`, { date }, config);
+  API.post(`/deletestreak/${habitId}`, { date }, config);
 };
 
 export const getCalender = (habitId) =>
