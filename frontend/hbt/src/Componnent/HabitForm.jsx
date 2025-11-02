@@ -198,14 +198,14 @@ const handleSubmit = async (e) => {
         value={formData.goal}
         onChange={handleChange}
       />
-
+{/* 
       <input
         type="text"
         name="note"
         placeholder="Today's Note"
         value={formData.note}
         onChange={handleChange}
-      />
+      /> */}
 
       <button type="submit">Save Habit</button>
     </form>

@@ -33,6 +33,8 @@ const Landing = () => {
 
   const [habits, setHabits] = useState([]);       // Support multiple habits
   const [showForm, setShowForm] = useState(false); // Toggle form
+    const [selectedHabitId, setSelectedHabitId] = useState(null);
+
 
   const handleOpenForm = () => {
     setShowForm(true); // show the form when + is clicked
@@ -75,9 +77,17 @@ const Landing = () => {
     navigate('/login');
   };
 
-  const handleClick = () =>{
-    
+  const handleClick = (habitId) =>{
+        setSelectedHabitId(habitId);
+        console.log("Selected Habit for Calendar:", selectedHabitId);
+          const dashboardSection = document.getElementById("Dashboard");
+  if (dashboardSection) {
+    dashboardSection.scrollIntoView({ behavior: "smooth" });
   }
+
+
+
+  };
   
   
 
@@ -165,7 +175,7 @@ const Landing = () => {
 >
   {habits.map((habit) => (
     <SwiperSlide key={habit._id}>
-      <HabitCard habit={habit} onDelete={handleDelete} onUpdate={handleUpdate} onClick={handleClick} />
+      <HabitCard habit={habit} onDelete={handleDelete} onUpdate={handleUpdate} onClick={() =>handleClick(habit._id)} />
     </SwiperSlide>
   ))}
 </Swiper>
@@ -197,12 +207,27 @@ const Landing = () => {
         <StreakSummary completed={64} missed={36} />
         
         <div className="calendar">
-  {habits.map((habit) => (
+  {/* {habits.map((habit) => (
     <div key={habit._id}>
       <h4>{habit.name}</h4>
       <CalendarStreak habitId={habit._id} />
     </div>
-  ))}
+  ))} */}
+          
+          {selectedHabitId ? (
+            
+              <>
+    <h4>
+      {habits.find((habit) => habit._id === selectedHabitId)?. name || "Habit"}
+    </h4>
+    <CalendarStreak habitId={selectedHabitId} />
+  </>
+
+            
+          
+        ) : (
+          <p>Please click a habit card to view its calendar streak.</p>
+        )}
 </div>
       </aside>
             
@@ -210,9 +235,9 @@ const Landing = () => {
            
               
 
-      <main className="main">
+      {/* <main className="main">
         <CompletionChart />
-      </main>
+      </main> */}
       {/* <aside className="chat">
         <ChatPanel />
       </aside> */}

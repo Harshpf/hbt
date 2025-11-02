@@ -25,6 +25,11 @@ export const Delete = (habitId) =>
 export const Complete = (habitId, day, today) =>
   API.post(`/complete/${habitId}`, { day, today });
 
+
+export const Uncomplete = async (habitId, date, config) => {
+  return axios.put(`/api/habits/${habitId}/uncomplete`, { date }, config);
+};
+
 export const getCalender = (habitId) =>
   API.get(`/habitData/${habitId}`);
 
